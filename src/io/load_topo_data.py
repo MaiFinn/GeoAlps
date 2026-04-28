@@ -50,4 +50,6 @@ if __name__ == "__main__":
 
     dataset = load_raster(data_path)
 
+    
+
     inspect_raster(dataset)
