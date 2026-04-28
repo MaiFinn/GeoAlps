@@ -11,6 +11,8 @@ import logging
 from src.config.logging_config import setup_logging
 from src.io.sanity_checks import sanity_checks
 from src.io.load_topo_data import load_raster, inspect_raster
+from src.mesh.raster_to_mesh import raster_band_to_mesh
+from src.visualization.plot_mesh import plot_terrain_mesh
 #from src.processing.preprocessing import clean_band
 #from src.processing.scaling import suggest_z_scale
 #from src.visualization.plot_3d import plot_3d
@@ -54,6 +56,22 @@ def main():
 
         band = dataset.read(1)
         logger.info("Band 1 loaded. Shape=%s, dtype=%s", band.shape, band.dtype)
+
+        x, y, z = raster_band_to_mesh(
+            dataset=dataset,
+            band=band,
+            downsample_factor=25,
+        )
+
+        plot_terrain_mesh(
+            x_grid=x,
+            y_grid=y,
+            z_grid=z,
+            z_scale=0.1,
+            title="Alpine Terrain Mesh",
+            scale_reference="min",
+            fix_z_axis=True,
+        )
 
         # band = clean_band(band, dataset.nodata)
         # z_scale = suggest_z_scale(band)

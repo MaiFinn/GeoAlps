@@ -38,10 +38,6 @@ def inspect_raster(dataset):
     
     return band
 
-def sanity_checks(dataset):
-
-    return #sanity check successful? Yes/No -> if No - what was wrong?
-
 if __name__ == "__main__":
 
     print("I only run when executed directly.")
@@ -49,7 +45,5 @@ if __name__ == "__main__":
     data_path = "topographic_data/output_hh.tif"
 
     dataset = load_raster(data_path)
-
-    
 
     inspect_raster(dataset)
