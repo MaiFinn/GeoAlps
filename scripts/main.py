@@ -18,6 +18,8 @@ from src.visualization.plot_mesh_pyvista import plot_terrain_3d
 from src.visualization.plot_raster_2d import plot_raster_2d
 from src.visualization.select_crop_area import select_crop_area_2d
 from src.processing.cropping import crop_raster_by_bounds
+from src.export.export_stl import export_terrain_to_stl
+from src.visualization.plot_stl import plot_stl_model
 
 
 logger = logging.getLogger(__name__)
@@ -152,6 +154,28 @@ def main():
                 colormap_name="terrain",
                 show_edges=False,
                 show_grid=True,
+            )
+
+            stl_output_path = project_root / "outputs" / "cropped_terrain.stl"
+
+            export_terrain_to_stl(
+                x_grid=cropped_x_grid,
+                y_grid=cropped_y_grid,
+                z_grid=cropped_z_grid,
+                output_path=stl_output_path,
+                target_size_mm=80.0,
+                base_thickness_mm=3.5,
+                z_exaggeration=1.6,
+                input_coordinates="degrees",
+            )
+
+            logger.info("STL file exported to: %s", stl_output_path)
+
+            plot_stl_model(
+            stl_path=stl_output_path,
+            title="Exported STL Preview",
+            show_edges=False,
+            show_grid=True,
             )
 
             cropped_dataset.close()
