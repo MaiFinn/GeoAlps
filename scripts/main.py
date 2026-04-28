@@ -9,6 +9,7 @@
 from pathlib import Path
 import logging
 from src.config.logging_config import setup_logging
+from src.io.sanity_checks import sanity_checks
 from src.io.load_topo_data import load_raster, inspect_raster
 #from src.processing.preprocessing import clean_band
 #from src.processing.scaling import suggest_z_scale
@@ -36,8 +37,20 @@ def main():
         dataset = load_raster(path)
         logger.info("Inspecting raster.")
 
+        check_result = sanity_checks(dataset)
+
+        if not check_result["success"]:
+            logger.error("Stopping pipeline because sanity checks failed.")
+
+            for key, value in check_result["summary"].items():
+                logger.error("Dataset summary | %s: %s", key, value)
+
+            raise ValueError("Sanity checks failed. See log output for details.")
+
+        logger.info("Sanity checks passed.")
+
         inspect_raster(dataset)
-        logger.info("Reading band 1.")
+        logger.debug("Reading band 1.")
 
         band = dataset.read(1)
         logger.info("Band 1 loaded. Shape=%s, dtype=%s", band.shape, band.dtype)
