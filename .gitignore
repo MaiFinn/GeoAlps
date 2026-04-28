@@ -13,9 +13,7 @@ __pycache__/
 .ipynb_checkpoints/
 
 # Logs
-logs/
-*.log
-.DS_Store
+logs/*
 !logs/.gitkeep
 
 # Environment variables / secrets
@@ -38,11 +36,5 @@ dist/
 *.egg-info/
 
 # Raster / large data files
-topographic_data/
-*.tif
-*.tiff
-*.asc
-*.dem
-*.vrt
-*.aux.xml
+topographic_data/*
 !topographic_data/.gitkeep
