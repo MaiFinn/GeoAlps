@@ -38,3 +38,7 @@ dist/
 # Raster / large data files
 topographic_data/*
 !topographic_data/.gitkeep
+
+# Outputs from cropping
+outputs/*
+!outputs/.gitkeep
