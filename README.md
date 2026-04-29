@@ -6,6 +6,8 @@ The project focuses on alpine topographic data such as GeoTIFF-based digital ele
 
 GeoAlps allows users to load a raster file, inspect its metadata, select a crop area from a 2D preview, render the selected area as a 3D surface, and export the result as an STL file for 3D printing.
 
+Solid Open-Source topographic data can be downloaded e.g. from https://dataspace.copernicus.eu with a resolution of up to 30 meters.
+
 ## Features
 
 - Load raster data from GeoTIFF files
