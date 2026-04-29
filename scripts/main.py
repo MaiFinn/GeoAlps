@@ -5,6 +5,7 @@
 # 5.) Crop raster
 # 6.) Load cropped raster
 # 7.) Render cropped raster as detailed 3D terrain
+# 8.) Export cropped raster as stl file and visualize stl file
 
 from pathlib import Path
 import logging
